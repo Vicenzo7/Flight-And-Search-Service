@@ -102,10 +102,31 @@ const getAll = async (req, res) => {
   }
 };
 
+const createCities = async (req, res) => {
+  try {
+    const cities = await cityService.createCities(req.body);
+    return res.status(201).json({
+      data: cities,
+      success: true,
+      message: "Successfully created a city",
+      err: {},
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to  create a city",
+      err: { error },
+    });
+  }
+};
+
 module.exports = {
   create,
   destroy,
   get,
   update,
   getAll,
+  createCities,
 };
