@@ -7,7 +7,7 @@ class CityRepository {
       const city = await City.create({ name });
       return city;
     } catch (error) {
-      console.log("Something went wrong in the repository layer");
+      console.log("Something went wrong in the City repository layer");
       throw { error };
     }
   }
@@ -18,12 +18,10 @@ class CityRepository {
         where: {
           id: cityId,
         },
-        returning: true,
-        plain: true,
       });
       return true;
     } catch (error) {
-      console.log("Something went wrong in the repository layer");
+      console.log("Something went wrong in the City repository layer");
       throw { error };
     }
   }
@@ -45,7 +43,7 @@ class CityRepository {
 
       return city;
     } catch (error) {
-      console.log("Something went wrong in the repository layer");
+      console.log("Something went wrong in the City repository layer");
       throw { error };
     }
   }
@@ -55,7 +53,7 @@ class CityRepository {
       const city = await City.findByPk(cityId);
       return city;
     } catch (error) {
-      console.log("Something went wrong in the repository layer");
+      console.log("Something went wrong in the City repository layer");
       throw { error };
     }
   }
@@ -74,10 +72,10 @@ class CityRepository {
         return cities;
       }
 
-      const city = await City.findAll();
-      return city;
+      const cities = await City.findAll();
+      return cities;
     } catch (error) {
-      console.log("Something went wrong in the repository layer");
+      console.log("Something went wrong in the City repository layer");
       throw { error };
     }
   }
@@ -87,7 +85,18 @@ class CityRepository {
       const cities = await City.bulkCreate(data);
       return cities;
     } catch (error) {
-      console.log("Something went wrong in the repository layer");
+      console.log("Something went wrong in the City repository layer");
+      throw { error };
+    }
+  }
+
+  async findAirportsByCityId(cityId) {
+    try {
+      const city = await City.findByPk(cityId);
+      const airports = city.getAirports();
+      return airports;
+    } catch (error) {
+      console.log("Something went wrong in the City repository layer");
       throw { error };
     }
   }

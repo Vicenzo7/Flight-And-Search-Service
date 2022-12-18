@@ -10,7 +10,7 @@ class CityService {
       const city = await this.cityRepository.createCity(data);
       return city;
     } catch (error) {
-      console.log("Something went wrong in the service layer");
+      console.log("Something went wrong in the City service layer");
       throw { error };
     }
   }
@@ -20,7 +20,7 @@ class CityService {
       const response = await this.cityRepository.deleteCity(cityId);
       return response;
     } catch (error) {
-      console.log("Something went wrong in the service layer");
+      console.log("Something went wrong in the City service layer");
       throw { error };
     }
   }
@@ -30,7 +30,7 @@ class CityService {
       const city = await this.cityRepository.updateCity(cityId, data);
       return city;
     } catch (error) {
-      console.log("Something went wrong in the service layer");
+      console.log("Something went wrong in the City service layer");
       throw { error };
     }
   }
@@ -40,7 +40,7 @@ class CityService {
       const city = await this.cityRepository.getCity(cityId);
       return city;
     } catch (error) {
-      console.log("Something went wrong in the service layer");
+      console.log("Something went wrong in the City service layer");
       throw { error };
     }
   }
@@ -52,7 +52,7 @@ class CityService {
       });
       return cities;
     } catch (error) {
-      console.log("Something went wrong in the service layer");
+      console.log("Something went wrong in the City service layer");
       throw { error };
     }
   }
@@ -62,7 +62,17 @@ class CityService {
       const cities = await this.cityRepository.createCities(data);
       return cities;
     } catch (error) {
-      console.log("Something went wrong in the service layer");
+      console.log("Something went wrong in the City service layer");
+      throw { error };
+    }
+  }
+
+  async findAirportsByCityId(cityId) {
+    try {
+      const airports = await this.cityRepository.findAirportsByCityId(cityId);
+      return airports;
+    } catch (error) {
+      console.log("Something went wrong in the City service layer");
       throw { error };
     }
   }
