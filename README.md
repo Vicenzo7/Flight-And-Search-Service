@@ -58,3 +58,10 @@
     Command to create Airport Model -> `npx sequelize model:generate --name Airport --attributes name:String,address:String,cityId:Integer`
 
     Set up association in the models
+
+```
+npx sequelize model:generate --name Airplane --attributes modelNumber:String,capacity:Integer
+
+npx sequelize model:generate --name Flight --attributes flightNumber:String,airplaneId:integer,departureAirportId:integer,arrivalAirportId:integer,arrivalTime:Date,departureTime:Date,price:integer,boardingGate:String,totalSeats:integer
+
+```
