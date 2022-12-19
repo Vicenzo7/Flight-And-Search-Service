@@ -4,6 +4,8 @@ const flightService = new FlightService();
 
 const create = async (req, res) => {
   try {
+    
+
     const flight = await flightService.createFlight(req.body);
     return res.status(201).json({
       data: flight,
@@ -21,7 +23,6 @@ const create = async (req, res) => {
     });
   }
 };
-
 
 const getAll = async (req, res) => {
   try {

@@ -1,36 +1,11 @@
+const CrudRepository = require("./crud-repository");
 const { Airport } = require("../models/index");
-
-class AirportRepository {
-  async createAirport({ name, address, cityId }) {
-    try {
-      const airport = await Airport.create({
-        name: name,
-        address: address,
-        cityId: cityId,
-      });
-      return airport;
-    } catch (error) {
-      console.log("Something went wrong in the Airport repository layer");
-      throw { error };
-    }
+class AirportRepository extends CrudRepository {
+  constructor() {
+    super(Airport);
   }
 
-  async deleteAirport(airportId) {
-    try {
-      await Airport.destroy({
-        where: {
-          id: airportId,
-        },
-      });
-
-      return true;
-    } catch (error) {
-      console.log("Something went wrong in the Airport repository layer");
-      throw { error };
-    }
-  }
-
-  async updateAirport(airportId, data) {
+  async update(airportId, data) {
     try {
       const airport = await Airport.findByPk(airportId);
 
@@ -52,17 +27,7 @@ class AirportRepository {
     }
   }
 
-  async getAirport(airportId) {
-    try {
-      const airport = await Airport.findByPk(airportId);
-      return airport;
-    } catch (error) {
-      console.log("Something went wrong in the Airport repository layer");
-      throw { error };
-    }
-  }
-
-  async getAllAirport(filter) {
+  async getAll(filter) {
     // filter can even be empty
     try {
       if (filter.name) {
